@@ -11,7 +11,7 @@ const CurrencySelector = props => {
     document.addEventListener('mousedown', onClickOutside);
 
     return () => document.removeEventListener('mousedown', onClickOutside);
-  }, []);
+  });
 
   const onButtonClick = e => {
     e.stopPropagation();
