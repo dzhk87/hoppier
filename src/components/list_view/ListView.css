@@ -1,0 +1,14 @@
+.list-view {
+  padding: 20px;
+}
+
+.list-view__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #999999;
+}
+
+.list-view__col {
+  flex: 1 1;
+}

@@ -1,0 +1,37 @@
+.currency-selector {
+  position: relative;
+}
+
+.dropdown-button {
+  appearance: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+}
+
+.dropdown-wrapper {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  background-color: #ffffff;
+  padding: 0;
+  border-radius: 3px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+  margin: 0;
+}
+
+.dropdown-item {
+  display: block;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.1s ease-out;
+}
+
+.dropdown-item:hover {
+  background-color: #eeeeee;
+}
+
+.dropdown-item:nth-child(n+2) {
+  border-top: 1px solid #cccccc;
+}
