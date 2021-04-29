@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import CurrencySelector from './currency_selector/CurrencySelector';
-import ListView from './list_view/ListView';
-import { init } from './actions';
-import { Currencies, USD } from '../constants/currency';
-import './Container.css';
+import { useEffect, useState } from "react";
+import CurrencySelector from "./currency_selector/CurrencySelector";
+import ListView from "./list_view/ListView";
+import { init } from "./actions";
+import { Currencies, USD } from "../constants/currency";
+import "./Container.css";
 
 const Container = () => {
   const [selectedCurrency, setSelectedCurrency] = useState(USD);
@@ -12,11 +12,12 @@ const Container = () => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    init().then(({data, userSummary: summary}) => {
-      setTransactions(data);
+    (async () => {
+      const { transactionRows, userSummary: summary } = await init();
+      setTransactions(transactionRows);
       setIsInitialized(true);
       setUserSummary(summary);
-    })
+    })();
   }, []);
 
   return (
@@ -32,18 +33,15 @@ const Container = () => {
       <div className="body">
         {!isInitialized && <div className="loading">Loading...</div>}
         {isInitialized && (
-          <>
-            <div className="body__left">
-              <ListView selectedCurrency={selectedCurrency} transactions={transactions} userSummary={userSummary} />
-            </div>
-            <div className="body__right">
-              
-            </div>
-          </>
+          <ListView
+            selectedCurrency={selectedCurrency}
+            transactions={transactions}
+            userSummary={userSummary}
+          />
         )}
       </div>
     </div>
-  )
+  );
 };
 
 export default Container;
