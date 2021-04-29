@@ -1,0 +1,15 @@
+.user-summary {
+  position: absolute;
+  top: -100%;
+  left: 110%;
+  z-index: 1;
+  width: auto;
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid #cccccc;
+}
+
+.user-summary__name,
+.user-summary__subtotal {
+  width: max-content;
+}

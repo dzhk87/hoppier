@@ -12,19 +12,17 @@ const Container = () => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    init().then(({data, summary}) => {
+    init().then(({data, userSummary}) => {
       setTransactions(data);
       setIsInitialized(true);
-      setUserSummary(summary);
+      setUserSummary(userSummary);
     })
   }, []);
-
-  console.log('userSummary:', userSummary);
 
   return (
     <div id="app-container">
       <div className="header">
-        <div>Transactions</div>
+        <div className="header__title">Transactions</div>
         <CurrencySelector
           selectedCurrency={selectedCurrency}
           onCurrencySelect={setSelectedCurrency}
@@ -36,7 +34,7 @@ const Container = () => {
         {isInitialized && (
           <>
             <div className="body__left">
-              <ListView selectedCurrency={selectedCurrency} transactions={transactions} />
+              <ListView selectedCurrency={selectedCurrency} transactions={transactions} userSummary={userSummary} />
             </div>
             <div className="body__right">
               

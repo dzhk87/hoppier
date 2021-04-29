@@ -38,17 +38,26 @@ export const init = async () => {
         amountInUSDCents: transaction.amountInUSDCents
       };
     });
-  const summary = transactions.reduce((acc, transaction) => {
+  const userSummary = transactions.reduce((acc, transaction) => {
     if (acc[transaction.cardId]) {
-      acc[transaction.cardId] += transaction.amountInUSDCents;
+      const userInfo = acc[transaction.cardId];
+      userInfo.subtotal += transaction.amountInUSDCents;
+      acc[transaction.cardId] = userInfo;
+      return acc;
     } else {
-      acc[transaction.cardId] = transaction.amountInUSDCents;
+      const user = userMap[transaction.cardId];
+      acc[transaction.cardId] = {
+        id: user.id,
+        cardId: transaction.cardId,
+        userName: user.firstName + ' ' + user.lastName,
+        subtotal: transaction.amountInUSDCents
+      };
     }
     return acc;
   }, {})
 
   return {
     data,
-    summary
+    userSummary
   };
 }
