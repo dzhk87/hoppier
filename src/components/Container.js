@@ -12,10 +12,10 @@ const Container = () => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    init().then(({data, _userSummary}) => {
+    init().then(({data, userSummary: summary}) => {
       setTransactions(data);
       setIsInitialized(true);
-      setUserSummary(_userSummary);
+      setUserSummary(summary);
     })
   }, []);
 
